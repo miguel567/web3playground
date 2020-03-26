@@ -22,18 +22,21 @@ realMainnetBlockNumber = w3realMainnet.eth.blockNumber
 
 """ fetching local Mainnet node data """
 w3localMainnet = Web3(HTTPProvider(mainnetHostname))
-localMainnetBlockNumber = w3localMainnet.eth.blockNumber
-
-print(now,' - Real Mainnet blocknumber:', realMainnetBlockNumber, 'Local mainnet blocknumber:', localMainnetBlockNumber, 'Local is behind:', realMainnetBlockNumber-localMainnetBlockNumber)
-logFile.write(str(now)+' - Real Mainnet blocknumber: '+str(realMainnetBlockNumber)+' Local mainnet blocknumber: '+str(localMainnetBlockNumber)+' Local is behind: '+str(realMainnetBlockNumber-localMainnetBlockNumber)+'\r\n')
-
+try:
+    localMainnetBlockNumber = w3localMainnet.eth.blockNumber
+    print(now,' - Real Mainnet blocknumber:', realMainnetBlockNumber, 'Local mainnet blocknumber:', localMainnetBlockNumber, 'Local is behind:', realMainnetBlockNumber-localMainnetBlockNumber)
+    logFile.write(str(now)+' - Real Mainnet blocknumber: '+str(realMainnetBlockNumber)+' Local mainnet blocknumber: '+str(localMainnetBlockNumber)+' Local is behind: '+str(realMainnetBlockNumber-localMainnetBlockNumber)+'\r\n')
+except Exception as ex:
+    print('Host not available')
 """ fetcing infura Mainnet data """
 w3realMainnet = Web3(HTTPProvider(os.getenv('kovanHost')))
 realKovanBlockNumber = w3realMainnet.eth.blockNumber
 
 """ fetching Kovan Mainnet node data """
 w3localKovan = Web3(HTTPProvider(kovanHostname))
-localKovanBlockNumber = w3localKovan.eth.blockNumber
-
-print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan blocknumber:', localKovanBlockNumber, 'Local is behind:', realKovanBlockNumber-localKovanBlockNumber)
-logFile.write(str(now)+' - Real Kovan blocknumber:'+str(realKovanBlockNumber)+'Local Kovan blocknumber:'+str(localKovanBlockNumber)+'Local is behind:'+str(realKovanBlockNumber-localKovanBlockNumber)+'\r\n')
+try:
+    localKovanBlockNumber = w3localKovan.eth.blockNumber
+    print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan blocknumber:', localKovanBlockNumber, 'Local is behind:', realKovanBlockNumber-localKovanBlockNumber)
+    logFile.write(str(now)+' - Real Kovan blocknumber:'+str(realKovanBlockNumber)+'Local Kovan blocknumber:'+str(localKovanBlockNumber)+'Local is behind:'+str(realKovanBlockNumber-localKovanBlockNumber)+'\r\n')
+except Exception as ex:
+    print ('Host not available')
