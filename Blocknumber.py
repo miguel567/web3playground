@@ -1,6 +1,13 @@
 
 from web3 import Web3, HTTPProvider
-import os, env
+import os, env, datetime
+
+""" define NOW time stamp """
+now =  datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+""" Define log file """
+logFile=open("behind.log", "a+")
+
 
 """ setting up hosts to fetch data """
 kovanHostname = 'http://'+os.getenv('localhost')+':'+os.getenv('kovan_port')
@@ -17,8 +24,8 @@ realMainnetBlockNumber = w3realMainnet.eth.blockNumber
 w3localMainnet = Web3(HTTPProvider(mainnetHostname))
 localMainnetBlockNumber = w3localMainnet.eth.blockNumber
 
-print('Real Mainnet blocknumber:', realMainnetBlockNumber, 'Local mainnet blocknumber:', localMainnetBlockNumber, 'Local is behind', realMainnetBlockNumber-localMainnetBlockNumber)
-
+print(now,' - Real Mainnet blocknumber:', realMainnetBlockNumber, 'Local mainnet blocknumber:', localMainnetBlockNumber, 'Local is behind:', realMainnetBlockNumber-localMainnetBlockNumber)
+logFile.write(str(now)+' - Real Mainnet blocknumber: '+str(realMainnetBlockNumber)+' Local mainnet blocknumber: '+str(localMainnetBlockNumber)+' Local is behind: '+str(realMainnetBlockNumber-localMainnetBlockNumber)+'\r\n')
 
 """ fetcing infura Mainnet data """
 w3realMainnet = Web3(HTTPProvider(os.getenv('kovanHost')))
@@ -28,4 +35,5 @@ realKovanBlockNumber = w3realMainnet.eth.blockNumber
 w3localKovan = Web3(HTTPProvider(kovanHostname))
 localKovanBlockNumber = w3localKovan.eth.blockNumber
 
-print('Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan blocknumber:', localKovanBlockNumber, 'Local is behind', realKovanBlockNumber-localKovanBlockNumber)
+print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan blocknumber:', localKovanBlockNumber, 'Local is behind:', realKovanBlockNumber-localKovanBlockNumber)
+logFile.write(str(now)+' - Real Kovan blocknumber:'+str(realKovanBlockNumber)+'Local Kovan blocknumber:'+str(localKovanBlockNumber)+'Local is behind:'+str(realKovanBlockNumber-localKovanBlockNumber)+'\r\n')
