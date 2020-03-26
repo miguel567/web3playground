@@ -2,5 +2,5 @@
 while :
 do
     python3 Blocknumber.py
-    sleep 10
+    sleep 80
 done
