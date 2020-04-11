@@ -12,6 +12,7 @@ csvLogFile=open("behindlogs.csv", "a+")
 
 """ setting up hosts to fetch data """
 kovanHostname = 'http://'+os.getenv('localhost')+':'+os.getenv('kovan_port')
+kovan2Hostname = 'http://'+os.getenv('localhost')+':'+os.getenv('kovan2_port')
 mainnetHostname = 'http://'+os.getenv('localhost')+':'+os.getenv('mainnet_port')
 
 
@@ -31,18 +32,23 @@ try:
 except Exception as ex:
     print('Host not available')
 """ fetcing infura Mainnet data """
-w3realMainnet = Web3(HTTPProvider(os.getenv('kovanHost')))
-realKovanBlockNumber = w3realMainnet.eth.blockNumber
+w3realKovan = Web3(HTTPProvider(os.getenv('kovanHost')))
+realKovanBlockNumber = w3realKovan.eth.blockNumber
 
 """ fetching Kovan Mainnet node data """
 w3localKovan = Web3(HTTPProvider(kovanHostname))
+w3localKovan2 = Web3(HTTPProvider(kovan2Hostname))
 try:
     localKovanBlockNumber = w3localKovan.eth.blockNumber
+    localKovan2BlockNumber = w3local2Kovan.eth.blockNumber
     print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan blocknumber:', localKovanBlockNumber, 'Local is behind:', realKovanBlockNumber-localKovanBlockNumber)
+    print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan2 blocknumber:', localKovan2BlockNumber, 'Local2 is behind:', realKovanBlockNumber-localKovan2BlockNumber)
     logFile.write(str(now)+' - Real Kovan blocknumber:'+str(realKovanBlockNumber)+'Local Kovan blocknumber:'+str(localKovanBlockNumber)+'Local is behind:'+str(realKovanBlockNumber-localKovanBlockNumber)+'\r\n')
     csvLogFile.write(str(now)+',kovan,'+str(realKovanBlockNumber)+','+str(localKovanBlockNumber)+','+str(realKovanBlockNumber-localKovanBlockNumber)+'\r\n')
+    logFile.write(str(now)+' - Real Kovan blocknumber:'+str(realKovanBlockNumber)+'Local Kovan2 blocknumber:'+str(localKovan2BlockNumber)+'Local2 is behind:'+str(realKovanBlockNumber-localKovan2BlockNumber)+'\r\n')
+    csvLogFile.write(str(now)+',kovan2,'+str(realKovanBlockNumber)+','+str(localKovanBlockNumber)+','+str(realKovanBlockNumber-localKovan2BlockNumber)+'\r\n')
 except Exception as ex:
-    print ('Host not available')
+    print ('Kovan Host not available')
 
 
     logFile.close()
