@@ -40,7 +40,7 @@ w3localKovan = Web3(HTTPProvider(kovanHostname))
 w3localKovan2 = Web3(HTTPProvider(kovan2Hostname))
 try:
     localKovanBlockNumber = w3localKovan.eth.blockNumber
-    localKovan2BlockNumber = w3local2Kovan.eth.blockNumber
+    localKovan2BlockNumber = w3localKovan2.eth.blockNumber
     print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan blocknumber:', localKovanBlockNumber, 'Local is behind:', realKovanBlockNumber-localKovanBlockNumber)
     print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan2 blocknumber:', localKovan2BlockNumber, 'Local2 is behind:', realKovanBlockNumber-localKovan2BlockNumber)
     logFile.write(str(now)+' - Real Kovan blocknumber:'+str(realKovanBlockNumber)+'Local Kovan blocknumber:'+str(localKovanBlockNumber)+'Local is behind:'+str(realKovanBlockNumber-localKovanBlockNumber)+'\r\n')
