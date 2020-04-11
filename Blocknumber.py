@@ -50,7 +50,7 @@ try:
     localKovan2BlockNumber = w3localKovan2.eth.blockNumber
     print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan2 blocknumber:', localKovan2BlockNumber, 'Local2 is behind:', realKovanBlockNumber-localKovan2BlockNumber)
     logFile.write(str(now)+' - Real Kovan blocknumber:'+str(realKovanBlockNumber)+'Local Kovan2 blocknumber:'+str(localKovan2BlockNumber)+'Local2 is behind:'+str(realKovanBlockNumber-localKovan2BlockNumber)+'\r\n')
-    csvLogFile.write(str(now)+',kovan2,'+str(realKovanBlockNumber)+','+str(localKovanBlockNumber)+','+str(realKovanBlockNumber-localKovan2BlockNumber)+'\r\n')
+    csvLogFile.write(str(now)+',kovan2,'+str(realKovanBlockNumber)+','+str(localKovan2BlockNumber)+','+str(realKovanBlockNumber-localKovan2BlockNumber)+'\r\n')
 except Exception as ex:
     print ('Kovan2 Host not available')
 
