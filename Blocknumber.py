@@ -30,7 +30,7 @@ try:
     logFile.write(str(now)+' - Real Mainnet blocknumber: '+str(realMainnetBlockNumber)+' Local mainnet blocknumber: '+str(localMainnetBlockNumber)+' Local is behind: '+str(realMainnetBlockNumber-localMainnetBlockNumber)+'\r\n')
     csvLogFile.write(str(now)+',mainnet,'+str(realMainnetBlockNumber)+','+str(localMainnetBlockNumber)+','+str(realMainnetBlockNumber-localMainnetBlockNumber)+'\r\n')
 except Exception as ex:
-    print('Host not available')
+    print('Mainnet Host not available')
 """ fetcing infura Mainnet data """
 w3realKovan = Web3(HTTPProvider(os.getenv('kovanHost')))
 realKovanBlockNumber = w3realKovan.eth.blockNumber
