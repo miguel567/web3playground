@@ -40,15 +40,19 @@ w3localKovan = Web3(HTTPProvider(kovanHostname))
 w3localKovan2 = Web3(HTTPProvider(kovan2Hostname))
 try:
     localKovanBlockNumber = w3localKovan.eth.blockNumber
-    localKovan2BlockNumber = w3localKovan2.eth.blockNumber
     print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan blocknumber:', localKovanBlockNumber, 'Local is behind:', realKovanBlockNumber-localKovanBlockNumber)
-    print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan2 blocknumber:', localKovan2BlockNumber, 'Local2 is behind:', realKovanBlockNumber-localKovan2BlockNumber)
     logFile.write(str(now)+' - Real Kovan blocknumber:'+str(realKovanBlockNumber)+'Local Kovan blocknumber:'+str(localKovanBlockNumber)+'Local is behind:'+str(realKovanBlockNumber-localKovanBlockNumber)+'\r\n')
     csvLogFile.write(str(now)+',kovan,'+str(realKovanBlockNumber)+','+str(localKovanBlockNumber)+','+str(realKovanBlockNumber-localKovanBlockNumber)+'\r\n')
+except Exception as ex:
+    print ('Kovan Host not available')
+
+try:
+    localKovan2BlockNumber = w3localKovan2.eth.blockNumber
+    print(now,' - Real Kovan blocknumber:', realKovanBlockNumber, 'Local Kovan2 blocknumber:', localKovan2BlockNumber, 'Local2 is behind:', realKovanBlockNumber-localKovan2BlockNumber)
     logFile.write(str(now)+' - Real Kovan blocknumber:'+str(realKovanBlockNumber)+'Local Kovan2 blocknumber:'+str(localKovan2BlockNumber)+'Local2 is behind:'+str(realKovanBlockNumber-localKovan2BlockNumber)+'\r\n')
     csvLogFile.write(str(now)+',kovan2,'+str(realKovanBlockNumber)+','+str(localKovanBlockNumber)+','+str(realKovanBlockNumber-localKovan2BlockNumber)+'\r\n')
 except Exception as ex:
-    print ('Kovan Host not available')
+    print ('Kovan2 Host not available')
 
 
     logFile.close()
