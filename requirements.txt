@@ -18,7 +18,7 @@ distro-info===0.18ubuntu0.18.04.1
 entrypoints==0.3
 env==0.1.0
 eth-abi==2.1.1
-eth-account==0.4.0
+eth-account==0.5.9
 eth-hash==0.2.0
 eth-keyfile==0.5.1
 eth-keys==0.2.4
